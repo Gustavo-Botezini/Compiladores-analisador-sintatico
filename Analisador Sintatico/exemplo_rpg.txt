@@ -1,0 +1,2 @@
+# Exemplo 1: Sistema de RPG básico
+FUS max_health := 100

@@ -1,0 +1,70 @@
+S' -> S
+S -> CMD ; S
+S -> CMD
+CMD -> LOS EXPR CMD
+CMD -> FOD CMD FAH EXPR
+CMD -> FAH CMD FAH EXPR
+CMD -> IO id
+CMD -> JUN EXPR
+CMD -> LHS := EXPR
+CMD -> KEL id CMD
+CMD -> FUS id := EXPR
+IO -> HON
+IO -> print
+LHS -> assign id
+LHS -> HIM . id
+EXPR -> TERM EXPR'
+EXPR' -> OP TERM EXPR'
+EXPR' -> ε
+OP -> +
+OP -> -
+OP -> ANRK
+OP -> AAN
+OP -> KO
+TERM -> UNARY
+TERM -> FACTOR
+UNARY -> NUST TERM
+FACTOR -> id
+FACTOR -> num
+FACTOR -> HIM . id
+FACTOR -> ( EXPR )
+
+Gramatica
+S ::= CMD ; S
+    | CMD
+
+CMD ::= LOS EXPR CMD                    /* if: LOS */
+     | FOD CMD FAH EXPR                 /* while: FOD ... FAH EXPR */
+     | FAH CMD FAH EXPR                 /* for: FAH ... FAH EXPR */
+     | IO id                            /* input / print */
+     | JUN EXPR                         /* return */
+     | LHS := EXPR                      /* atribuição (fatorada) */
+     | KEL id CMD                       /* módulo (Elder Scroll) */
+     | FUS id := EXPR                   
+
+IO ::= HON
+     | print
+
+LHS ::= assign id
+      | HIM . id
+
+EXPR ::= TERM EXPR'
+
+EXPR' ::= OP TERM EXPR'
+        | ε
+
+OP ::= + 
+     | - 
+     | ANRK        /* e (and) */
+     | AAN         /* ou (or) */
+     | KO          /* em (pertence) */
+
+TERM ::= UNARY
+       | FACTOR
+
+UNARY ::= NUST TERM                      /* eles = not */
+
+FACTOR ::= id
+         | num
+         | HIM . id
+         | ( EXPR )

@@ -1,0 +1,38 @@
+S ::= CMD ; S
+    | CMD
+
+CMD ::= LOS EXPR CMD                    /* if: LOS */
+     | FOD CMD FAH EXPR                 /* while: FOD ... FAH EXPR */
+     | FAH CMD FAH EXPR                 /* for: FAH ... FAH EXPR */
+     | IO id                            /* input / print */
+     | JUN EXPR                         /* return */
+     | LHS := EXPR                      /* atribuição (fatorada) */
+     | KEL id CMD                       /* módulo (Elder Scroll) */
+     | FUS id := EXPR                   
+
+IO ::= HON
+     | print
+
+LHS ::= assign id
+      | HIM . id
+
+EXPR ::= TERM EXPR'
+
+EXPR' ::= OP TERM EXPR'
+        | ε
+
+OP ::= + 
+     | - 
+     | ANRK        /* e (and) */
+     | AAN         /* ou (or) */
+     | KO          /* em (pertence) */
+
+TERM ::= UNARY
+       | FACTOR
+
+UNARY ::= NUST TERM                      /* eles = not */
+
+FACTOR ::= id
+         | num
+         | HIM . id
+         | ( EXPR )
